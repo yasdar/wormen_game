@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chart.js": "^4.4.8",
     "jquery": "^3.6.4",
     "phaser": "^3.55.2"
   },

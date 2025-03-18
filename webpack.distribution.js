@@ -58,7 +58,7 @@ module.exports = {
                     // every file inside src/assets folder
                     from: 'css/*',
                     context: 'src/'
-                },
+                }
 
             ]
         })

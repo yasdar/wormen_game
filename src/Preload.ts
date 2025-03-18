@@ -1,8 +1,10 @@
 import 'phaser';
+import { AboutGame } from './Config';
 export class Preload extends Phaser.Scene {
    
     img:Phaser.GameObjects.Image;
     TXT:Phaser.GameObjects.Text;
+    AllIcons:Array<string>=["cloud","crown","drop","square"];
      constructor() {super("Preload");}
      
      preload(): void {
@@ -19,6 +21,19 @@ export class Preload extends Phaser.Scene {
         //listeners
          this.load.on('progress', this.fileComplte,this);
          this.load.on('complete', this.complete,this);
+
+
+         this.load.image("red","./assets/images/red.png");
+       this.load.audio("NP_Wrong","./assets/audios/NP_Wrong.mp3");
+
+        this.AllIcons.forEach((str:string)=>{
+        this.load.audio(str,"./assets/audios/"+str+".mp3");
+        this.load.image(str,"./assets/images/"+str+".png");
+        this.load.image(str+"-green","./assets/images/"+str+"-green"+".png");
+        this.load.image(str+"-red","./assets/images/"+str+"-red"+".png");
+      });
+
+
         
         
      }
@@ -26,6 +41,10 @@ export class Preload extends Phaser.Scene {
         alert('game say : OnError  :'+error.url)
     }
      create(): void {
+        this.AllIcons.forEach((str:string)=>{
+           AboutGame.AllAudios[str] = this.sound.add(str);
+          });
+
         this.scene.start("PlayGame");
     }
 

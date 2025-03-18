@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Gmae Title</title>
+    <title>Game Title</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -11,9 +11,231 @@
 
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="css/style.css">
-    <script src='main.js'></script>
+    <link rel="stylesheet" href="css/output.css">
+    <link rel="stylesheet" href="css/input.css">
+    
+
+    
 </head>
-<body>
-  
+<body
+class="relative min-h-screen bg-gradient-to-br from-gray-100 via-gray-300 to-gray-500 p-8"
+>
+<!-- Background Image -->
+<div
+  class="absolute inset-0 z-0 bg-[url('/assets/bg.jpeg')] bg-cover bg-center opacity-5"
+></div>
+<div
+  id="firstScreen"
+  class="absolute top-0 left-0 z-10 p-8 w-full max-w-10xl"
+>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-start">
+    <div class="w-full space-y-6">
+      <!-- Easy icon - Star -->
+      <div
+        class="bg-gray-500 text-white rounded-lg p-4 flex justify-center items-center shadow-md transform hover:scale-105 transition duration-300 ease-in-out"
+        id="easyLevel"
+      >
+        <h3 class="font-semibold text-3xl">Easy</h3>
+      </div>
+
+      <!-- Medium icon - Double Stars -->
+      <div
+        class="bg-gray-500 text-white rounded-lg p-4 flex justify-center items-center shadow-md transform hover:scale-105 transition duration-300 ease-in-out"
+        id="mediumLevel"
+      >
+        <h3 class="font-semibold text-3xl">Medium</h3>
+      </div>
+
+      <!-- Hard icon - Triple Stars -->
+      <div
+        class="bg-gray-500 text-white rounded-lg p-4 flex justify-center items-center shadow-md transform hover:scale-105 transition duration-300 ease-in-out"
+        id="hardLevel"
+      >
+        <h3 class="font-semibold text-3xl">Hard</h3>
+      </div>
+    </div>
+    <div class="w-full">
+      <form class="space-y-6 flex-grow" id="gameSettingsForm">
+        <div class="flex flex-col space-y-6">
+          <!-- Time Limit Input -->
+          <div class="flex flex-row items-center space-x-2">
+            <label
+              class="text-sm font-medium leading-none w-40 flex-shrink-0"
+              for="time"
+            >
+              Time Limit:
+            </label>
+            <input
+              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              type="text"
+              id="timeLimit"
+              placeholder="60 Seconds"
+              required
+            />
+          </div>
+
+          <!-- Jumping Bar Toggle -->
+          <div class="flex flex-row items-center space-x-2">
+            <label
+              class="text-sm font-medium leading-none w-40 flex-shrink-0"
+              for="jumping-bar"
+            >
+              Jumping Bar:
+            </label>
+            <label class="group flex items-center cursor-pointer flex-1">
+              <input class="hidden peer" type="checkbox" id="jumpingBar" />
+              <span
+                class="relative w-8 h-8 flex justify-center items-center bg-gray-100 border-2 border-gray-400 rounded-md shadow-md transition-all duration-500 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-hover:scale-105"
+              >
+                <span
+                  class="absolute inset-0 bg-gradient-to-br from-white/30 to-white/10 opacity-0 peer-checked:opacity-100 rounded-md transition-all duration-500 peer-checked:animate-pulse"
+                ></span>
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  class="hidden w-5 h-5 text-white peer-checked:block transition-transform duration-500 transform scale-50 peer-checked:scale-100"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 10-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="h-24 md:h-52"></div>
+        <!-- Button Container -->
+        <div class="flex justify-end">
+          <button
+            class="relative group border-none bg-transparent p-0 outline-none cursor-pointer font-mono font-light uppercase text-base"
+            id="startGameBt"
+            type="button"
+          >
+            <span
+              class="absolute top-0 left-0 w-full h-full bg-gray-800 bg-opacity-30 rounded-lg transform translate-y-0.5 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:translate-y-1 group-hover:duration-[250ms] group-active:translate-y-px"
+            ></span>
+            <span
+              class="absolute top-0 left-0 w-full h-full rounded-lg bg-gradient-to-l from-gray-700 via-gray-600 to-gray-700"
+            ></span>
+            <div
+              class="relative flex items-center justify-between py-3 px-6 text-lg text-white rounded-lg transform -translate-y-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 gap-3 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:-translate-y-1.5 group-hover:duration-[250ms] group-active:-translate-y-0.5 brightness-100 group-hover:brightness-110"
+            >
+              <span class="select-none">Start</span>
+              <svg
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="w-5 h-5 ml-2 -mr-1 transition duration-250 group-hover:translate-x-1"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  fill-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="secondScreen" style="display: none">
+  <div id="GameDiv" style="min-height: 600px;"></div>
+  <button
+    id="endGameButton"
+    class="relative group border-none bg-transparent p-0 outline-none cursor-pointer font-mono font-light uppercase text-base"
+    type="button"
+    style="display: none;"
+  >
+    <span
+      class="absolute top-0 left-0 w-full h-full bg-gray-800 bg-opacity-30 rounded-lg transform translate-y-0.5 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:translate-y-1 group-hover:duration-[250ms] group-active:translate-y-px"
+    ></span>
+    <span
+      class="absolute top-0 left-0 w-full h-full rounded-lg bg-gradient-to-l from-gray-700 via-gray-600 to-gray-700"
+    ></span>
+    <div
+      class="relative flex items-center justify-between py-3 px-6 text-lg text-white rounded-lg transform -translate-y-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 gap-3 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:-translate-y-1.5 group-hover:duration-[250ms] group-active:-translate-y-0.5 brightness-100 group-hover:brightness-110"
+    >
+      <span class="select-none">Next</span>
+      <svg
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="w-5 h-5 ml-2 -mr-1 transition duration-250 group-hover:translate-x-1"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+          fill-rule="evenodd"
+        ></path>
+      </svg>
+    </div>
+  </button>
+</div>
+<div
+  id="thirdScreen"
+  class="w-full max-w-screen-lg mx-auto p-4 sm:p-6 md:p-4"
+  style="display: none"
+>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
+    <div class="space-y-6">
+      <div
+        class="group overflow-hidden relative after:duration-500 before:duration-500 duration-500 hover:after:duration-500 hover:after:translate-x-24 hover:before:translate-y-12 hover:before:-translate-x-32 hover:duration-500 after:absolute after:bg-sky-700 after:rounded-full after:blur-xl after:bottom-32 after:right-16 after:w-12 after:h-12 before:absolute before:bg-sky-400 before:rounded-full before:blur-xl before:top-20 before:right-16 before:w-12 before:h-12 flex justify-center items-center h-56 w-full max-w-md bg-gray-500 rounded-2xl outline outline-slate-400 -outline-offset-8"
+      >
+      <div id="scoreContainer"></div>
+      </div>
+      <div class="h-0 sm:h-12"></div>
+      <button
+        class="relative group border-none bg-transparent p-0 outline-none cursor-pointer font-mono font-light uppercase text-base"
+        id="restartGameBt"
+        type="button"
+      >
+        <span
+          class="absolute top-0 left-0 w-full h-full bg-gray-800 bg-opacity-30 rounded-lg transform translate-y-0.5 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:translate-y-1 group-hover:duration-[250ms] group-active:translate-y-px"
+        ></span>
+        <span
+          class="absolute top-0 left-0 w-full h-full rounded-lg bg-gradient-to-l from-gray-700 via-gray-600 to-gray-700"
+        ></span>
+        <div
+          class="relative flex items-center justify-between py-3 px-6 text-lg text-white rounded-lg transform -translate-y-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 gap-3 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:-translate-y-1.5 group-hover:duration-[250ms] group-active:-translate-y-0.5 brightness-100 group-hover:brightness-110"
+        >
+          <span class="select-none">Start Again</span>
+          <svg
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="w-5 h-5 ml-2 -mr-1 transition duration-250 group-hover:translate-x-1"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              fill-rule="evenodd"
+            ></path>
+          </svg>
+        </div>
+      </button>
+    </div>
+    <div class="w-full max-w-md z-10">
+      <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">
+          Your Improvement
+        </h1>
+
+        <!-- Line chart -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-xl font-semibold mb-4">User Progress</h2>
+          <div class="h-64">
+            <canvas id="lineChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src='main.js'></script>
+
+
+
+
 </body>
 </html>
